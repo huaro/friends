@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<script src="javascript.js"></script>
+
+<div class="w">
+    <div id="timer"></div>
+</div>
+<h1>她和他之间的那些事</h1>
+<div class="short" id="short">
+    <ul>
+        <li><a href="#">初遇</a></li>
+        <li class="spacer"></li>
+        <li><a href="1.html">大学</a></li>
+        <li class="spacer"></li>
+        <li><a href="2.html">欢游</a></li>
+        <li class="spacer"></li>
+        <li><a href="3.html">毕业</a></li>
+        <li class="spacer"></li>
+        <li><a href="jiehun/tab.html">结婚</a></li>
+    </ul>
+
+</div>
+
+<div class="top w clearfix">
+    <div class="top-l" id="top-l">
+        <div class="screen">
+            <ul>
+                <li><img src="images/1.jpg" width="800"/></li>
+                <li><img src="images/2.jpg" width="800"/></li>
+                <li><img src="images/3.jpg" width="800"/></li>
+                <li><img src="images/4.jpg" width="800"/></li>
+                <li><img src="images/5.jpg" width="800"/></li>
+                <li><img src="images/6.jpg" width="800"/></li>
+            </ul>
+            <ol>
+
+            </ol>
+        </div>
+        <div id="arr"><span id="left">&lt;</span><span id="right">&gt;</span></div>
+    </div>
+    <div class="top-r">
+        <h2>属于ta们的小故事</h2>
+        <p>那个夏天，刚刚入大学，他和朋友一起送朋友的女朋友去寝室，东西很多，那天很热。推开门，他们就这么相遇了，他对她一见钟情。
+            开始，她很安静，不说话，他不自觉的就想和她搭话，安顿好，不知道是谁提议的，他们就去了学校附近的一座山，那天，他默默的把她放在了心上。
+            这便是他们第一次相遇。 </p>
+        <p> 当天晚上，他就和身边的朋友说，她很好看。第二天，他就开始了漫漫追妻路。后来，他和她说：我们在一起试试吧，不合适，你在撤。小姑娘就诧异了，原来还可以这样吗？
+            单纯的答应了。可是大灰狼会放弃吃到嘴里的小绵羊吗？答案很明显啦^_^,这是他们的开始。</p>
+        <p>他和她，在一起四年了，期间也有过争吵，冷战。和其他情侣一样的矛盾，可是彼此的感情越来越深厚。直到那天，他向她提出了，照顾她一辈子，她笑了。
+            2017年1月31日，宜嫁娶。这便是他们幸福的开端。 这幸福也一直在进行中。</p>
+    </div>
+</div>
+<div class="w middle">
+    <h2>那年那月那日</h2>
+    <div class="photo">
+        <div class="img"><img src="images/a.jpg" alt=""></div>
+        <div class="time">2014年12月12日，那个夏天</div>
+        <div class="text">刚开学，他们互不相识，朋友的随拍，留下了这张相片，缘分很奇妙</div>
+    </div>
+    <div class="photo">
+        <div class="img"><img src="images/m.jpg" alt=""></div>
+        <div class="time">2014年10月19日，那个秋天</div>
+        <div class="text">秋黄的季节，她与他，牵手于此，相视一笑。520，不是瞬间</div>
+    </div>
+    <div class="photo">
+        <div class="img"><img src="images/s.jpg" alt=""></div>
+        <div class="time">2015年02月10日，那个春天</div>
+        <div class="text">他对她说：我要向全世界宣告我爱你，让全世界知道我们很幸福！</div>
+    </div>
+
+    <div class="photo">
+        <div class="img"><img src="images/x.jpg" alt=""></div>
+        <div class="time">2016年05月02日，这个春天</div>
+        <div class="text">她对他说：爱情就像飞机，起飞时很难，起飞后甜甜蜜蜜，一旦乘坐就不能换做下班</div>
+    </div>
+</div>
+
+<img src="images/tianshi.gif" id="ts" alt="">
+
+<script>
+    //获取动画函数
+    function animate(element, target, step) {
+        //        如果有timer就清除，保证只有一个定时器在执行
+        if (element.timer) {
+            clearInterval(element.timer);
+        }
+        element.timer = setInterval(function () {
+            var leader = element.offsetLeft;//盒子当前的位置
+            //var step = 30;//盒子一次跑几像素
+            if (leader > target) {
+                //说明在左边
+                step = -Math.abs(step);
+            }
+            var disabled = Math.abs(target - leader);
+            if (disabled >= Math.abs(step)) {
+//                    动画的公式
+                leader = leader + step;
+                element.style.left = leader + "px";
+            } else {
+                clearInterval(element.timer);
+                //抱过去
+                element.style.left = target + "px";
+            }
+        }, 15)
+    }
+    // 轮播图部分 找对象
+    var box = document.getElementById("top-l");
+    var screen = box.children[0]
+    var arr = document.getElementById("arr");
+    var rightArr = document.getElementById("right");
+    var leftArr = document.getElementById("left");
+    var ul = screen.children[0]
+    var ol = screen.children[1]
+    var ulLis = ul.children;
+
+    var imgWidth = screen.offsetWidth;
+    var pic=0;
+    var square=0;
+
+    //动态生成小方块和假图片
+    for (var i = 0; i < ulLis.length; i++) {
+        var li = document.createElement("li");
+        ol.appendChild(li);
+        li.innerHTML = i + 1;
+    }
+
+    olLis = ol.children;
+    olLis[0].className = "current"
+
+    var cloneLi = ulLis[0].cloneNode(true);
+    ul.appendChild(cloneLi);
+
+    //    简单轮播功能
+    for (var i = 0; i < olLis.length; i++) {
+        olLis[i].index = i;
+
+//        排他高亮
+        olLis[i].onclick = function () {
+            for (var i = 0; i < olLis.length; i++) {
+                olLis[i].className = "";
+            }
+            this.className = "current";
+
+            //        移动ul
+            var target = -this.index * imgWidth;
+            animate(ul, target, 40);
+
+            square=pic=this.index;
+            if(square==0){
+                ul.style.left=0;
+            }
+        }
+
+//左右焦点功能
+//        鼠标经过盒子
+        box.onmouseover= function () {
+            arr.style.display="block";
+
+//            清除定时器
+            clearInterval(timer);
+        }
+
+        box.onmouseout= function () {
+            arr.style.display="none";
+
+//            自动播放
+            timer=setInterval(function () {
+                rightArr.click();
+            },2000);
+        }
+
+        rightArr.onclick= function () {
+            if(pic==ulLis.length-1){
+                pic=0;
+                ul.style.left="0";
+            }
+            pic++;
+            var target=-pic*imgWidth;
+            animate(ul,target,40);
+
+            square++;
+            if(square==olLis.length){
+                square=0;
+            }
+            for(var i=0;i<olLis.length;i++){
+                olLis[i].className="";
+            }
+            olLis[square].className="current";
+        }
+
+        leftArr.onclick= function () {
+            if(pic==0){
+                pic=ulLis.length-1;
+                ul.style.left=-pic*imgWidth+"px";
+            }
+            pic--;
+            var target=-pic*imgWidth;
+            animate(ul,target,40);
+
+            square--;
+            if(square==-1){
+                square=olLis.length-1;
+            }
+            for(var i=0;i<olLis.length;i++){
+                olLis[i].className="";
+            }
+            olLis[square].className="current";
+        }
+    }
+
+    //        自动播放
+    timer=setInterval(function () {
+        rightArr.click();
+    },2000);
+
+//    同步
+
+
+    //    找对象
+    var ts = document.getElementById("ts");
+
+    //    给文档注册鼠标移动事件
+    document.onmousemove = function (e) {
+        e = e || window.event;//兼容问题
+
+//        获取鼠标的位置
+        var x = e.clientX;
+        var y = e.clientY;
+
+
+//        获取小天使的位置
+        ts.style.position = "fixed";
+        ts.style.left = x + "px";
+        ts.style.top = y + "px";
+
+    }
+    document.onclick= function () {
+        document.onmousemove=null;
+    }
+
+</script>
+</body>
+</html>

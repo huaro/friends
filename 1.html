@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*欢游*/
+        .box {
+            float: left;
+            border: 1px solid cyan;
+            padding: 5px;
+        }
+
+        .box img {
+            width: 192px;
+        }
+        
+
+        
+        .last a{
+            width: 120px;
+            float: left;
+            text-align: center;
+            border-radius: 8px;
+            margin-right: 20px;
+            background-color: red;
+            cursor: pointer;
+            display:block;
+            width: 120px;
+            height: 30px;
+            font: 700 12px/30px "microsoft yahei";
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="w">
+    <div id="timer"></div>
+</div>
+<script src="javascript.js"></script>
+
+<div class="last fr">
+    <a href="index.html">点我返回首页哦^_^</a>
+</div>
+
+<h1>ta们一起走过的那路</h1>
+
+
+<div class="container " id="container">
+    <div class="box"><img src="images/img/P_000.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_001.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_002.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_003.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_004.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_005.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_006.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_007.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_008.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_009.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_010.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_011.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_012.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_013.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_014.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_015.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_016.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_017.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_018.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_019.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_020.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_021.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_022.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_023.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_024.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_025.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_026.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_027.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_028.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_029.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_030.jpg" alt=""/></div>
+    <div class="box"><img src="images/img/P_031.jpg" alt=""/></div>
+    <!--<div class="box"><img src="images/img/P_032.jpg" alt=""/></div>-->
+</div>
+
+<script>
+    window.onload = function () {
+        // 找对象
+        var box = document.getElementById("container");
+        var demos = box.children;
+        var arr = [];
+
+//        找出第一行出现多少图片的张数
+        var pareWidth = getClient().width;//可视宽度
+        var boxWidth = demos[0].offsetWidth;//图片宽度
+        var columns = parseInt(pareWidth / boxWidth); //每行图片的个数
+
+        for (var i = 0; i < columns; i++) {
+//取出第一行图片的高度放入数组中
+            arr.push(demos[i].offsetHeight);
+        }
+//            计算出第一行中哪一个图片最短
+        for (var i = columns; i < demos.length; i++) {
+            var div = demos[i];
+            assin(div);
+        }
+
+        function assin(div) {
+            var index = getMin(arr);
+//            给图片定位，设置left值和top值
+            div.style.position = "absolute";
+            div.style.left = demos[index].offsetLeft + "px";
+            div.style.top = arr[index] + "px";
+
+//            当加上新的图片，高度发生改变
+            arr[index] = arr[index] + div.offsetHeight;
+        }
+
+//        滚动时，当最后一张图片加载完成后，动态生成，加载图片
+//        注册滚动事件
+        window.onscroll = function () {
+            var pareHeight = getClient().height;//可视图片高度
+            var scrollHeight = getScroll().top;//页面卷去高度
+            var lastPic = demos[demos.length - 1].offsetTop;
+
+            if (pareHeight + scrollHeight >= lastPic) {
+                var datas = [
+                    {"src": "images/img/P_000.jpg"},
+                    {"src": "images/img/P_001.jpg"},
+                    {"src": "images/img/P_002.jpg"},
+                    {"src": "images/img/P_003.jpg"},
+                    {"src": "images/img/P_004.jpg"},
+                    {"src": "images/img/P_005.jpg"},
+                    {"src": "images/img/P_006.jpg"},
+                    {"src": "images/img/P_007.jpg"},
+                    {"src": "images/img/P_008.jpg"},
+                    {"src": "images/img/P_009.jpg"},
+                    {"src": "images/img/P_010.jpg"},
+                    {"src": "images/img/P_011.jpg"},
+                    {"src": "images/img/P_012.jpg"},
+                    {"src": "images/img/P_013.jpg"},
+                    {"src": "images/img/P_014.jpg"},
+                    {"src": "images/img/P_015.jpg"},
+                    {"src": "images/img/P_016.jpg"},
+                    {"src": "images/img/P_017.jpg"},
+                    {"src": "images/img/P_018.jpg"},
+                    {"src": "images/img/P_019.jpg"},
+                    {"src": "images/img/P_020.jpg"},
+                ]
+//                动态生成
+                for (var i = 0; i < datas.length; i++) {
+                    var div = document.createElement("div");
+                    div.className = "box";
+                    div.innerHTML = '<img src="' + datas[i].src + '" alt=""/>';
+                    box.appendChild(div);
+
+                    assin(div);
+                }
+            }
+        }
+    }
+
+
+    function getMin(arr) {
+        var index = 0;
+        var min = arr[0];
+        for (var i = 0; i < arr.length; i++) {
+            if (arr[i] < min) {
+                min = arr[i];
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    function getClient() {
+        return {
+            width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth || 0,
+            height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight || 0
+        }
+    }
+
+    function getScroll() {
+        return {
+            top: window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0,
+            left: window.pageXOffset || document.documentElement.scrollLeft || document.body.scrollLeft || 0
+        }
+    }
+</script>
+</body>
+</html>

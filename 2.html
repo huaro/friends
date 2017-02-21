@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #wallpaper2 {
+            position: fixed;
+            width: 2500px;
+            height: 1600px;
+            top: 50%;
+            left: 50%;
+            margin-top: -800px;
+            margin-left: -1250px;
+            background: url(images/page1_bg.jpg) no-repeat center center;
+            background-size: 100% 100%;
+            z-index: -11;
+            animation: wallpaper2 360s linear infinite;
+        }
+
+        @keyframes wallpaper2 {
+            0% {
+                transform: rotate(0deg);
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: rotate(3600deg);
+                opacity: 1;
+            }
+        }
+        .wrap .slide{
+            margin: 0 auto;
+        }
+        .last a{
+            width: 120px;
+            float: left;
+            text-align: center;
+            border-radius: 8px;
+            margin-right: 20px;
+            background-color: red;
+            cursor: pointer;
+            display:block;
+            width: 120px;
+            height: 30px;
+            font: 700 12px/30px "microsoft yahei";
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="last fr">
+    <a href="index.html">点我返回首页哦^_^</a>
+</div>
+
+<script src="javascript.js"></script>
+
+<div id="wallpaper2"></div>
+
+<div class="w">
+    <div id="timer"></div>
+</div>
+<h1>美丽的大学时光</h1>
+
+<div class="title w" id="box">
+    <ul>
+        <li>
+            <div class="dt">
+                回首往事 <br><br> 难忘时光
+            </div>
+            <div class="dd"></div>
+        </li>
+        <li>
+            <div class="dt">
+                岁月正好 <br><br>阳光明媚
+            </div>
+            <div class="dd"></div>
+        </li>
+        <li>
+            <div class="dt">
+                荷塘月色 <br><br> 你我相伴
+            </div>
+            <div class="dd"></div>
+        </li>
+        <li>
+            <div class="dt">
+                此生此世 <br><br> 唯你尔
+            </div>
+            <div class="dd"></div>
+        </li>
+        <li>
+            <div class="dt">
+                与君相守 <br><br> 白头到老
+            </div>
+            <div class="dd"></div>
+        </li>
+    </ul>
+</div>
+
+<div class="wrap" id="wrap">
+    <div class="slide" id="slide">
+        <ul>
+            <li><a href="#"><img src="images/slidepic1.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/slidepic2.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/slidepic3.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/slidepic4.jpg" alt=""/></a></li>
+            <li><a href="#"><img src="images/slidepic5.jpg" alt=""/></a></li>
+        </ul>
+        <div class="arrow" id="arrow">
+            <a href="javascript:;" class="prev" id="arrLeft"></a>
+            <a href="javascript:;" class="next" id="arrRight"></a>
+        </div>
+    </div>
+</div>
+<script>
+
+    function getStyle(element, attr){
+        //能力检测
+        if(window.getComputedStyle){
+            return window.getComputedStyle(element, null)[attr];
+        }else {
+            return element.currentStyle[attr];
+        }
+    }
+    function animate(element, obj, fn) {
+        if (element.timer) {
+            clearInterval(element.timer);
+        }
+
+        element.timer = setInterval(function () {
+
+            var flag = true;//假设成立
+
+            for(var k in obj) {
+
+                if(k === "opacity"){
+                    //说明要改的样式是不透明度
+                    var attr = k;
+                    var target = obj[k];
+
+                    //1. parseInt改成了parseFloat,因为opacity是一个小数
+                    var leader = parseFloat(getStyle(element, attr)) || 0;
+
+
+                    //2. 我对leader和target同时放大1000倍
+                    leader = leader * 1000;
+                    target = target * 1000;
+
+                    var step = (target - leader) / 10;
+
+                    step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                    leader += step;
+
+                    //3. 设置的时候，对leader缩小1000倍
+                    element.style[attr] = leader/1000;
+
+                    if (leader != target) {
+                        flag = false;
+                    }
+                }else if(k === "zIndex"){
+                    //如果是zIndex属性的话，不用做动画，直接设置
+                    element.style.zIndex = obj[k];
+                } else{
+                    var attr = k;
+                    var target = obj[k];
+                    var leader = parseInt(getStyle(element, attr)) || 0;
+
+                    var step = (target - leader) / 10;
+                    step = step > 0 ? Math.ceil(step) : Math.floor(step);
+                    leader += step;
+                    element.style[attr] = leader + "px";
+
+                    if (leader != target) {
+                        flag = false;
+                    }
+                }
+
+            }
+
+            if(flag) {
+                clearInterval(element.timer);
+                fn && fn();
+            }
+
+            console.log("代码还在执行");
+        }, 15);
+    }
+
+//    找对象
+    var dts = document.getElementsByClassName("dt")
+    var dds = document.getElementsByClassName("dd");
+    var box = document.getElementById("box");
+    var dLis = box.getElementsByTagName("li");
+
+    for (var i = 0; i < dts.length; i++) {
+//        dts[i].style.backgroundImage = "url(images/img" + (i + 1) + ".jpg)";
+//        dts[i].innerHTML="大学一路走来，牵着的手，没有放过，幸福一路到底"
+        dds[i].style.backgroundImage = "url(images/pic" + (i + 1) + ".jpg)";
+
+        //设置每一个li的left值,第一个li来说：left:0
+        //对于其他的：
+        if (i == 0) {
+            dLis[i].style.left = 0;
+        } else {
+            dLis[i].style.left = 510 + 116 * i + "px";
+        }
+
+
+        //给li注册鼠标经过事件
+        dLis[i].index = i;
+        dLis[i].onmouseover = function () {
+            // 对于小于idx那些li，left：116*i
+            //对于大于的那些li,left:116*i + 510
+            for (var i = 0; i < dLis.length; i++) {
+                if (i <= this.index) {
+                    animate(dLis[i], {"left": 116 * i});
+                } else {
+                    animate(dLis[i], {"left": 116 * i + 510});
+                }
+            }
+        }
+
+    }
+
+
+    //其实就是一个配置单 规定了每张图片的大小位置层级透明度,   后台数据
+    var datas = [
+        {
+            "width": 400,
+            "top": 20,
+            "left": 50,
+            "opacity": 0.2,
+            "zIndex": 2
+        },//0
+        {
+            "width": 600,
+            "top": 70,
+            "left": 0,
+            "opacity": 0.8,
+            "zIndex": 3
+        },//1
+        {
+            "width": 800,
+            "top": 100,
+            "left": 200,
+            "opacity": 1,
+            "zIndex": 4
+        },//2
+        {
+            width: 600,
+            top: 70,
+            left: 600,
+            opacity: 0.8,
+            zIndex: 3
+        },//3
+        {
+            "width": 400,
+            "top": 20,
+            "left": 750,
+            "opacity": 0.2,
+            "zIndex": 2
+        }//4
+    ];
+
+    //找对象
+    var wrap = document.getElementById("wrap");
+    var slide = document.getElementById("slide");
+    var arrow = document.getElementById("arrow");
+    var arrLeft = document.getElementById("arrLeft");
+    var arrRight = document.getElementById("arrRight");
+    var lis = slide.getElementsByTagName("li");
+
+    //    图片各就各位
+    for (var i = 0; i < datas.length; i++) {
+        flag = true;
+
+        animate(lis[i], datas[i]);
+    }
+
+    //    鼠标经过事件
+    wrap.onmouseover = function () {
+        animate(arrow, {"opacity": 1});
+
+//        清除定时器
+        clearInterval(timer);
+    }
+
+    //    鼠标离开事件
+    wrap.onmouseout = function () {
+        animate(arrow, {"opacity": 0});
+
+        timer = setInterval(function () {
+            arrRight.click();
+        }, 1000);
+
+    }
+
+
+    //    点击右箭头
+
+    arrRight.onclick = function () {
+        if (flag) {
+            flag = false;
+
+            datas.unshift(datas.pop());
+            for (var i = 0; i < lis.length; i++) {
+                animate(lis[i], datas[i], function () {
+                    flag = true;
+                });
+            }
+        }
+    }
+    //    点击左箭头
+    arrLeft.onclick = function () {
+
+//        节流阀
+        if (flag) {
+            flag = false; //   把门关起来
+
+            datas.push(datas.shift());
+            for (var i = 0; i < lis.length; i++) {
+                animate(lis[i], datas[i], function () {
+                    flag = true;//打开门
+                });
+            }
+        }
+    }
+
+    //自动播放
+    timer = setInterval(function () {
+        arrRight.click();
+    }, 1000);
+
+
+
+</script>
+</body>
+</html>

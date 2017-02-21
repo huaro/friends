@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .w {
+            width: 1300px;
+            margin: 0px auto;
+        }
+
+
+
+        h2 {
+            width: 1300px;
+            text-align: center;
+            color: #FB7381;
+            font: 36px/80px "microsoft yahei";
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+        }
+
+        .box {
+            width: 100%;
+            height: 100%;
+            background: url("images/section_home_fg.png") 0 0 no-repeat;
+            animation: liuxingyu 1s linear infinite;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .last {
+            position: relative;
+        }
+
+        .last a {
+        width: 120px;
+        float: left;
+        text-align: center;
+        border-radius: 8px;
+        margin-right: 20px;
+        background-color: red;
+        cursor: pointer;
+        width: 120px;
+        height: 30px;
+        font: 700 12px/30px "microsoft yahei";
+        color: #fff;
+        text-decoration: none;
+        }
+
+        @keyframes liuxingyu {
+            0% {
+                background-position: 900px -1032px;
+                opacity: 0;
+            }
+            100% {
+                background-position: -900px 1032px;
+                opacity: 1;
+            }
+        }
+
+        .xfk {
+            margin-top: 80px;
+            margin-left: 80px;
+            width: 500px;
+            height: 800px;
+        }
+
+        .xfk ul {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: all 10s;
+        }
+
+        .xfk li {
+            width: 100%;
+            height: 100%;
+            font: 48px/200px "microsoft yahei";
+            text-align: center;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .xfk img {
+            width: 400px;
+            height: 400px;
+        }
+
+        .xfk li:nth-child(1) {
+            background-color: #5ACFFB;
+            transform: rotateX(90deg) translateZ(200px);
+        }
+
+        .xfk li:nth-child(2) {
+            background-color: #57E227;
+            transform: rotateX(-90deg) translateZ(200px);
+        }
+
+        .xfk li:nth-child(3) {
+            background-color: #FB7381;
+            transform: rotateY(-90deg) translateZ(200px);
+        }
+
+        .xfk li:nth-child(4) {
+            background-color: #ff9000;
+            transform: rotateY(90deg) translateZ(200px);
+        }
+
+        .xfk li:nth-child(5) {
+            background-color: #fed73c;
+            transform: rotateY(180deg) translateZ(200px);
+        }
+
+        .xfk li:nth-child(6) {
+            background-color: plum;
+            transform: translateZ(200px);
+        }
+
+        .xfk ul:hover {
+            transform: rotateX(360deg) rotateY(360deg);
+        }
+
+        .middle {
+            margin-left: 40px;
+            margin-top: 100px;
+            width: 40px;
+            height: 600px;
+            color: #B61B1F;
+            font: 32px/32px "simsin";
+        }
+
+        /*无缝*/
+        .num {
+            width: 500px;
+            height: 666px;
+            border: 2px solid cyan;
+            overflow: hidden;
+        }
+
+        .num:hover img {
+            animation-play-state: paused;
+        }
+
+        .num img {
+            display: block;
+            width: 500px;
+            height: 333px;
+            animation: lunbo 40s linear infinite;
+            position: relative;
+        }
+
+        @keyframes lunbo {
+            0% {
+                top: 0;
+            }
+            100% {
+                top: -2331px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!--流星雨-->
+<div class="box"></div>
+
+<div class="last">
+    <a href="index.html">点我返回首页哦^_^</a>
+</div>
+
+<h2>我们的幸福</h2>
+
+<div class="w">
+    <!--小方块-->
+    <div class="xfk fl">
+        <ul>
+            <li><img src="images/image/1.jpg" alt=""></li>
+            <li><img src="images/image/2.jpg" alt=""></li>
+            <li><img src="images/image/3.jpg" alt=""></li>
+            <li><img src="images/image/4.jpg" alt=""></li>
+            <li><img src="images/image/5.jpg" alt=""></li>
+            <li><img src="images/image/6.jpg" alt=""></li>
+        </ul>
+    </div>
+
+    <div class="middle fl">
+        我的幸福 <br><br>从此由你来给
+    </div>
+
+    <!--无缝轮播图-->
+    <div class="num fr">
+        <ul>
+            <li><img src="images/wufen/1.jpg" alt=""></li>
+            <li><img src="images/wufen/2.jpg" alt=""></li>
+            <li><img src="images/wufen/3.jpg" alt=""></li>
+            <li><img src="images/wufen/4.jpg" alt=""></li>
+            <li><img src="images/wufen/5.jpg" alt=""></li>
+            <li><img src="images/wufen/6.jpg" alt=""></li>
+            <li><img src="images/wufen/7.jpg" alt=""></li>
+            <li><img src="images/wufen/1.jpg" alt=""></li>
+            <li><img src="images/wufen/2.jpg" alt=""></li>
+            <li><img src="images/wufen/3.jpg" alt=""></li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
